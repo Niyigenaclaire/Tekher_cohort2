@@ -13,7 +13,7 @@ from chatbot_embeddings import EmbeddingFAQChatbot
 # ---------------------------------------------------------------------------
 st.set_page_config(
     page_title="FAQ Chatbot — NLP Assignment",
-    page_icon="https://cdn-icons-png.flaticon.com/512/4712/4712035.png",
+    page_icon="🤖",
     layout="centered",
 )
 
@@ -38,13 +38,7 @@ st.markdown("""
     margin-bottom: 24px;
     box-shadow: 0 8px 32px rgba(15,76,76,0.18);
   }
-  .hero img.hero-icon {
-    width: 72px; height: 72px;
-    border-radius: 16px;
-    margin-bottom: 14px;
-    background: rgba(255,255,255,0.15);
-    padding: 8px;
-  }
+  .hero svg { margin-bottom: 14px; }
   .hero h1 {
     color: #ffffff !important;
     font-size: 2rem !important;
@@ -68,7 +62,7 @@ st.markdown("""
     align-items: flex-start;
     gap: 10px;
   }
-  .tip-box img { width:20px; height:20px; margin-top:1px; flex-shrink:0; }
+  .tip-box svg { flex-shrink: 0; margin-top: 1px; }
 
   /* ── Cards ── */
   .card {
@@ -218,11 +212,9 @@ if "history" not in st.session_state:
 # ---------------------------------------------------------------------------
 # Hero
 # ---------------------------------------------------------------------------
-st.markdown("""
+st.markdown(f"""
 <div class="hero">
-  <img class="hero-icon"
-       src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
-       alt="chatbot icon"/>
+  {SVG_ROBOT}
   <h1>FAQ Chatbot</h1>
   <p>NLP Assignment &nbsp;&middot;&nbsp; TF-IDF vs Word Embeddings &nbsp;&middot;&nbsp; Side-by-side comparison</p>
 </div>
@@ -231,9 +223,9 @@ st.markdown("""
 # ---------------------------------------------------------------------------
 # Tip box
 # ---------------------------------------------------------------------------
-st.markdown("""
+st.markdown(f"""
 <div class="tip-box">
-  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="tip"/>
+  {SVG_TIP}
   <span>
     <strong>Try these questions:</strong>&nbsp;
     "Can I get a refund?" &nbsp;&middot;&nbsp;
@@ -271,9 +263,81 @@ def score_bar(score: float) -> str:
       <span class="score-label">{score:.3f}</span>
     </div>"""
 
-# card icons from Flaticon (free / open CDN)
-ICON_V1 = "https://cdn-icons-png.flaticon.com/512/2920/2920349.png"   # document/text
-ICON_V2 = "https://cdn-icons-png.flaticon.com/512/8637/8637101.png"   # neural network
+# SVG icons — inline, no external URLs, always render correctly
+SVG_ROBOT = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="16" fill="rgba(255,255,255,0.15)"/>
+  <rect x="16" y="20" width="32" height="24" rx="6" fill="white"/>
+  <circle cx="24" cy="30" r="4" fill="#0f4c4c"/>
+  <circle cx="40" cy="30" r="4" fill="#0f4c4c"/>
+  <rect x="24" y="37" width="16" height="3" rx="1.5" fill="#0f4c4c"/>
+  <rect x="30" y="12" width="4" height="8" rx="2" fill="white"/>
+  <circle cx="32" cy="11" r="3" fill="white"/>
+  <rect x="8" y="26" width="6" height="10" rx="3" fill="white"/>
+  <rect x="50" y="26" width="6" height="10" rx="3" fill="white"/>
+</svg>"""
+
+SVG_TIP = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="#059669">
+  <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-4h2v4zm0-6H9V5h2v2z"/>
+</svg>"""
+
+SVG_DOC = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
+  <rect width="28" height="28" rx="8" fill="#e6f7f5"/>
+  <rect x="7" y="7" width="14" height="3" rx="1.5" fill="#0f4c4c"/>
+  <rect x="7" y="13" width="14" height="2" rx="1" fill="#0f4c4c" opacity=".6"/>
+  <rect x="7" y="18" width="9" height="2" rx="1" fill="#0f4c4c" opacity=".4"/>
+</svg>"""
+
+SVG_NEURAL = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
+  <rect width="28" height="28" rx="8" fill="#e6f7f5"/>
+  <circle cx="7" cy="10" r="2.5" fill="#0f4c4c"/>
+  <circle cx="7" cy="18" r="2.5" fill="#0f4c4c"/>
+  <circle cx="14" cy="7"  r="2.5" fill="#22a899"/>
+  <circle cx="14" cy="14" r="2.5" fill="#22a899"/>
+  <circle cx="14" cy="21" r="2.5" fill="#22a899"/>
+  <circle cx="21" cy="10" r="2.5" fill="#0f4c4c"/>
+  <circle cx="21" cy="18" r="2.5" fill="#0f4c4c"/>
+  <line x1="9.5" y1="10" x2="11.5" y2="9"  stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="9.5" y1="10" x2="11.5" y2="14" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="9.5" y1="18" x2="11.5" y2="14" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="9.5" y1="18" x2="11.5" y2="21" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="16.5" y1="7"  x2="18.5" y2="10" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="16.5" y1="14" x2="18.5" y2="10" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="16.5" y1="14" x2="18.5" y2="18" stroke="#0f4c4c" stroke-width="1"/>
+  <line x1="16.5" y1="21" x2="18.5" y2="18" stroke="#0f4c4c" stroke-width="1"/>
+</svg>"""
+
+SVG_CHART = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" fill="#64748b">
+  <rect x="1" y="7" width="3" height="6" rx="1"/>
+  <rect x="5.5" y="4" width="3" height="9" rx="1"/>
+  <rect x="10" y="1" width="3" height="12" rx="1"/>
+</svg>"""
+
+SVG_HISTORY = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" fill="#64748b">
+  <circle cx="7" cy="7" r="6" stroke="#64748b" stroke-width="1.5" fill="none"/>
+  <polyline points="7,4 7,7 9.5,9.5" stroke="#64748b" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>"""
+
+# Metric icons (inline SVG)
+SVG_ACCURACY = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14">
+  <circle cx="7" cy="7" r="6" stroke="#059669" stroke-width="1.5" fill="none"/>
+  <polyline points="4,7 6,9.5 10,4.5" stroke="#059669" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>"""
+
+SVG_RECALL = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" fill="#0f4c4c">
+  <path d="M7 2a5 5 0 100 10A5 5 0 007 2zm0 1.5A3.5 3.5 0 1110.5 7 3.5 3.5 0 017 3.5z" opacity=".3"/>
+  <path d="M7 4.5v3l2 1.2" stroke="#0f4c4c" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+</svg>"""
+
+SVG_F1 = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" fill="#0f4c4c">
+  <rect x="2" y="5" width="4" height="7" rx="1"/>
+  <rect x="8" y="2" width="4" height="10" rx="1"/>
+</svg>"""
+
+SVG_SIM = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14" stroke="#0f4c4c" fill="none">
+  <circle cx="4" cy="7" r="2.5" stroke-width="1.3"/>
+  <circle cx="10" cy="7" r="2.5" stroke-width="1.3"/>
+  <line x1="6.5" y1="7" x2="7.5" y2="7" stroke-width="1.5" stroke-linecap="round"/>
+</svg>"""
 
 # ---------------------------------------------------------------------------
 # Answer cards
@@ -294,7 +358,7 @@ if ask_clicked and question.strip():
         st.markdown(f"""
         <div class="card">
           <div class="card-header">
-            <img src="{ICON_V1}" alt="tfidf"/>
+            {SVG_DOC}
             <span class="card-label">TF-IDF <span class="badge">V1</span></span>
           </div>
           <div class="answer-text">{tfidf_answer}</div>
@@ -306,7 +370,7 @@ if ask_clicked and question.strip():
         st.markdown(f"""
         <div class="card">
           <div class="card-header">
-            <img src="{ICON_V2}" alt="embeddings"/>
+            {SVG_NEURAL}
             <span class="card-label">Word Embeddings <span class="badge">V2</span></span>
           </div>
           <div class="answer-text">{embed_answer}</div>
@@ -323,7 +387,7 @@ else:
         st.markdown(f"""
         <div class="card">
           <div class="card-header">
-            <img src="{ICON_V1}" alt="tfidf"/>
+            {SVG_DOC}
             <span class="card-label">TF-IDF <span class="badge">V1</span></span>
           </div>
           <div class="answer-text placeholder">Answer will appear here after you ask a question...</div>
@@ -332,7 +396,7 @@ else:
         st.markdown(f"""
         <div class="card">
           <div class="card-header">
-            <img src="{ICON_V2}" alt="embeddings"/>
+            {SVG_NEURAL}
             <span class="card-label">Word Embeddings <span class="badge">V2</span></span>
           </div>
           <div class="answer-text placeholder">Answer will appear here after you ask a question...</div>
@@ -341,31 +405,28 @@ else:
 # ---------------------------------------------------------------------------
 # Metrics strip — NO crossed-out numbers, just new value + delta
 # ---------------------------------------------------------------------------
-st.markdown("""
+st.markdown(f"""
 <div class="section-tag">
   <hr/>
-  <span>
-    <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png" alt="chart"/>
-    Before / After Metrics
-  </span>
+  <span>{SVG_CHART} Before / After Metrics</span>
   <hr/>
 </div>
 """, unsafe_allow_html=True)
 
 metrics = [
-    ("https://cdn-icons-png.flaticon.com/512/190/190411.png", "Accuracy",  "72.2%", "+5.6% vs TF-IDF"),
-    ("https://cdn-icons-png.flaticon.com/512/3163/3163478.png","Recall",    "80.0%", "+6.7% vs TF-IDF"),
-    ("https://cdn-icons-png.flaticon.com/512/992/992651.png",  "F1 Score",  "82.8%", "+4.2% vs TF-IDF"),
-    ("https://cdn-icons-png.flaticon.com/512/1041/1041916.png","Avg Sim",   "0.809", "+22.7% vs TF-IDF"),
+    (SVG_ACCURACY, "Accuracy",  "72.2%", "+5.6% vs TF-IDF"),
+    (SVG_RECALL,   "Recall",    "80.0%", "+6.7% vs TF-IDF"),
+    (SVG_F1,       "F1 Score",  "82.8%", "+4.2% vs TF-IDF"),
+    (SVG_SIM,      "Avg Sim",   "0.809", "+22.7% vs TF-IDF"),
 ]
 
 cols = st.columns(4)
-for col, (icon, label, value, delta) in zip(cols, metrics):
+for col, (icon_svg, label, value, delta) in zip(cols, metrics):
     with col:
         st.markdown(f"""
         <div class="metric-card">
           <div class="metric-label">
-            <img src="{icon}" alt="{label}"/>
+            {icon_svg}
             {label}
           </div>
           <div class="metric-value">{value}</div>
@@ -376,13 +437,10 @@ for col, (icon, label, value, delta) in zip(cols, metrics):
 # History
 # ---------------------------------------------------------------------------
 if st.session_state.history:
-    st.markdown("""
+    st.markdown(f"""
     <div class="section-tag">
       <hr/>
-      <span>
-        <img src="https://cdn-icons-png.flaticon.com/512/2956/2956785.png" alt="history"/>
-        Previous Questions
-      </span>
+      <span>{SVG_HISTORY} Previous Questions</span>
       <hr/>
     </div>
     """, unsafe_allow_html=True)
