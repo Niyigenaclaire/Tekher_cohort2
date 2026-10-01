@@ -312,21 +312,16 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
-# Tip box
+# Tip box  — using native st.info so it always renders correctly
 # ---------------------------------------------------------------------------
-st.markdown(f"""
-<div class="tip-box">
-  {SVG_CHART}
-  <span>
-    <strong style="color:#e2d9f3">Try these:</strong>&nbsp;
-    "Can I get a refund?" &nbsp;&middot;&nbsp;
-    "Where is my package?" &nbsp;&middot;&nbsp;
-    "Any promo codes?" &nbsp;&middot;&nbsp;
-    "Is my data safe?" &nbsp;&middot;&nbsp;
-    "How fast is delivery?"
-  </span>
-</div>
-""", unsafe_allow_html=True)
+st.info(
+    '**Try these questions:** '
+    '"Can I get a refund?" · '
+    '"Where is my package?" · '
+    '"Any promo codes?" · '
+    '"Is my data safe?" · '
+    '"How fast is delivery?"'
+)
 
 # ---------------------------------------------------------------------------
 # Input
